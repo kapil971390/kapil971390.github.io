@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kapil Rathore — QA Automation Engineer</title>
+  <meta name="description" content="Sr. QA Automation Engineer with 5+ years experience in Playwright, Selenium, and AI-powered testing. Open source contributor with 4+ merged PRs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface2: #263248;
+      --border: #334155;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --blue: #3b82f6;
+      --blue-dim: rgba(59,130,246,0.12);
+      --green: #22c55e;
+      --green-dim: rgba(34,197,94,0.12);
+      --orange: #f59e0b;
+      --orange-dim: rgba(245,158,11,0.12);
+      --purple: #a855f7;
+      --purple-dim: rgba(168,85,247,0.12);
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo { font-weight: 700; font-size: 16px; color: var(--text); }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-cta {
+      background: var(--blue); color: #fff; border: none; border-radius: 8px;
+      padding: 7px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .85; }
+
+    /* ── Sections ── */
+    section { padding: 80px 24px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 600; letter-spacing: .1em;
+      color: var(--blue); text-transform: uppercase; margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: 28px; font-weight: 800; color: var(--text); margin-bottom: 8px;
+    }
+    .section-sub { color: var(--muted); margin-bottom: 40px; max-width: 560px; }
+
+    /* ── Hero ── */
+    #hero {
+      padding-top: 140px; padding-bottom: 80px;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(59,130,246,.08) 0%, transparent 70%);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-dim); border: 1px solid rgba(34,197,94,.25);
+      border-radius: 100px; padding: 4px 14px; font-size: 12px; font-weight: 600;
+      color: var(--green); margin-bottom: 24px;
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; } 50% { opacity: .4; }
+    }
+    .hero-name {
+      font-size: clamp(36px, 6vw, 56px); font-weight: 800;
+      line-height: 1.1; margin-bottom: 16px;
+    }
+    .hero-name .accent { color: var(--blue); }
+    .hero-title {
+      font-size: 18px; color: var(--muted); margin-bottom: 32px; max-width: 560px;
+    }
+    .hero-title strong { color: var(--text); font-weight: 600; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-primary {
+      background: var(--blue); color: #fff; border: none; border-radius: 10px;
+      padding: 12px 24px; font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: opacity .2s; text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { opacity: .85; text-decoration: none; }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 24px; font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: border-color .2s; text-decoration: none; display: inline-flex;
+      align-items: center; gap: 8px;
+    }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); text-decoration: none; }
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 32px;
+      border-top: 1px solid var(--border); padding-top: 32px;
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 4px; }
+    .stat-num { font-size: 26px; font-weight: 800; color: var(--text); }
+    .stat-num .accent { color: var(--blue); }
+    .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+
+    /* ── Skills ── */
+    #skills { background: var(--surface); }
+    .skills-grid { display: flex; flex-direction: column; gap: 24px; }
+    .skill-group-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .08em;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 10px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 5px 14px; font-size: 13px; font-weight: 500;
+      color: var(--text); transition: border-color .2s, color .2s;
+    }
+    .tag:hover { border-color: var(--blue); color: var(--blue); }
+    .tag.blue { background: var(--blue-dim); border-color: rgba(59,130,246,.3); color: var(--blue); }
+    .tag.green { background: var(--green-dim); border-color: rgba(34,197,94,.3); color: var(--green); }
+    .tag.purple { background: var(--purple-dim); border-color: rgba(168,85,247,.3); color: var(--purple); }
+
+    /* ── OSS ── */
+    #oss { }
+    .oss-summary {
+      display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 40px;
+    }
+    .oss-stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px 24px;
+      flex: 1; min-width: 140px;
+    }
+    .oss-stat-card .num {
+      font-size: 32px; font-weight: 800; color: var(--text);
+    }
+    .oss-stat-card .num.green { color: var(--green); }
+    .oss-stat-card .lbl { font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 4px; }
+
+    .oss-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; }
+    .oss-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      transition: border-color .2s, transform .2s;
+    }
+    .oss-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .oss-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .oss-repo { font-size: 13px; font-weight: 600; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      border-radius: 100px; padding: 3px 10px; font-size: 11px; font-weight: 700;
+      letter-spacing: .04em; text-transform: uppercase; white-space: nowrap;
+    }
+    .badge.merged { background: var(--green-dim); color: var(--green); border: 1px solid rgba(34,197,94,.25); }
+    .badge.open { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(245,158,11,.25); }
+    .badge.merged::before { content: '✓ '; }
+    .badge.open::before { content: '⏳ '; }
+    .oss-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .oss-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .oss-meta { display: flex; align-items: center; gap: 16px; }
+    .oss-stars { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .oss-stars span { color: #f59e0b; margin-right: 3px; }
+    .oss-lang-tag {
+      font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 5px;
+      background: var(--surface2); color: var(--muted);
+    }
+    .oss-link {
+      font-size: 12px; font-weight: 600; color: var(--blue);
+      margin-left: auto; display: flex; align-items: center; gap: 4px;
+    }
+    .oss-link:hover { text-decoration: underline; }
+
+    /* ── Projects ── */
+    #projects { background: var(--surface); }
+    .projects-grid { display: flex; flex-direction: column; gap: 20px; }
+    .proj-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px; position: relative;
+      transition: border-color .2s;
+    }
+    .proj-card:hover { border-color: var(--blue); }
+    .proj-card.featured { border-color: rgba(168,85,247,.4); background: rgba(168,85,247,.03); }
+    .proj-card.featured:hover { border-color: var(--purple); }
+    .featured-badge {
+      position: absolute; top: -1px; right: 20px;
+      background: var(--purple); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; padding: 4px 12px;
+      border-radius: 0 0 8px 8px;
+    }
+    .proj-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+    .proj-title { font-size: 18px; font-weight: 700; color: var(--text); }
+    .proj-meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+    .proj-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+    .proj-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .proj-bullets li {
+      font-size: 13px; color: var(--muted); padding-left: 18px; position: relative;
+    }
+    .proj-bullets li::before {
+      content: '→'; position: absolute; left: 0; color: var(--blue); font-weight: 700;
+    }
+    .proj-bullets li strong { color: var(--text); font-weight: 600; }
+    .proj-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tech-tag {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 3px 10px; font-size: 11px; font-weight: 600;
+      color: var(--muted); font-family: 'JetBrains Mono', monospace;
+    }
+    .proj-links { display: flex; gap: 12px; align-items: center; margin-top: 16px; }
+    .proj-link {
+      font-size: 13px; font-weight: 600; color: var(--blue);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .proj-link:hover { text-decoration: underline; }
+
+    /* ── About ── */
+    #about { }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .about-text { font-size: 15px; color: var(--muted); line-height: 1.8; }
+    .about-text p + p { margin-top: 16px; }
+    .about-text strong { color: var(--text); }
+    .about-highlights { display: flex; flex-direction: column; gap: 16px; }
+    .highlight-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px;
+    }
+    .highlight-icon { font-size: 22px; margin-bottom: 8px; }
+    .highlight-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .highlight-text { font-size: 12px; color: var(--muted); }
+
+    /* ── Contact ── */
+    #contact { text-align: center; }
+    .contact-card {
+      max-width: 560px; margin: 0 auto;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 48px 40px;
+    }
+    .contact-title { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+    .contact-sub { color: var(--muted); margin-bottom: 32px; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link-card {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 20px; text-decoration: none;
+      transition: border-color .2s, transform .2s; color: var(--text);
+    }
+    .contact-link-card:hover { border-color: var(--blue); transform: translateY(-1px); text-decoration: none; }
+    .contact-link-icon { font-size: 20px; width: 36px; text-align: center; }
+    .contact-link-info { text-align: left; }
+    .contact-link-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .contact-link-val { font-size: 12px; color: var(--muted); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center; padding: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .oss-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+      .oss-summary { }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ─────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">Kapil<span>.</span></span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#oss">Open Source</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn-primary nav-cta" href="https://www.upwork.com" target="_blank">Hire Me on Upwork</a>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Available for Freelance
+    </div>
+
+    <h1 class="hero-name">
+      Kapil Rathore<br />
+      <span class="accent">QA Automation</span> Engineer
+    </h1>
+
+    <p class="hero-title">
+      <strong>5+ years</strong> building scalable test frameworks that ship faster and break less.
+      Playwright · Selenium · AI-Powered Testing · Open Source Contributor.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://www.upwork.com" target="_blank">Hire Me on Upwork ↗</a>
+      <a class="btn-outline" href="https://github.com/kapil971390" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a class="btn-outline" href="mailto:kapil97139@gmail.com">
+        ✉ Email Me
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">5<span class="accent">+</span></span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">4</span>
+        <span class="stat-label">OSS PRs Merged</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">50K<span class="accent">+</span></span>
+        <span class="stat-label">Stars Contributed To</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">70<span class="accent">%</span></span>
+        <span class="stat-label">Regression Reduction</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">200<span class="accent">+</span></span>
+        <span class="stat-label">API Tests Automated</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ─────────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">QA Engineer who ships proof, not just reports</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a <strong>Sr. QA Automation Engineer</strong> with 5+ years of end-to-end STLC experience.
+          I specialize in building test frameworks from scratch — not just running scripts — using
+          <strong>Playwright, Selenium WebDriver, and RestAssured</strong> across e-commerce, CRM,
+          SaaS, and IoT domains.
+        </p>
+        <p>
+          Beyond client work, I actively contribute to <strong>open source projects</strong> — finding
+          real bugs in codebases used by millions of developers and getting fixes merged.
+          I also built <strong>VeriQA</strong>, an AI-powered tool that automatically generates
+          QA test scenarios from git commits.
+        </p>
+        <p>
+          I've led QA teams of 5 engineers, driven CI/CD integrations with GitHub Actions and
+          Azure DevOps, and consistently delivered <strong>85%+ automated test coverage</strong>
+          with a 95%+ on-time sprint delivery rate.
+        </p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="highlight-icon">🧠</div>
+          <div class="highlight-title">AI-Augmented QA</div>
+          <div class="highlight-text">Built VeriQA — an AI tool that analyzes PR diffs and generates manual test scenarios automatically.</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🌍</div>
+          <div class="highlight-title">Open Source Contributor</div>
+          <div class="highlight-text">4 PRs merged in major repos including CodeceptJS (14K★) and MoneyPrinterTurbo (20K★).</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🚀</div>
+          <div class="highlight-title">QA Lead</div>
+          <div class="highlight-text">Led teams of 5 QA engineers, reduced regression cycles from 3 days to 4 hours through automation.</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🔗</div>
+          <div class="highlight-title">CI/CD Integration</div>
+          <div class="highlight-text">GitHub Actions + Azure DevOps pipelines with Slack alerts for nightly regression runs.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ─────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Core Skills</p>
+    <h2 class="section-title">What I work with</h2>
+    <p class="section-sub">Tools and technologies I use to deliver quality at speed.</p>
+
+    <div class="skills-grid">
+      <div>
+        <p class="skill-group-label">Test Automation Frameworks</p>
+        <div class="tags">
+          <span class="tag blue">Playwright</span>
+          <span class="tag blue">Selenium WebDriver</span>
+          <span class="tag blue">RestAssured</span>
+          <span class="tag blue">Appium</span>
+          <span class="tag blue">Cypress</span>
+          <span class="tag blue">TestNG</span>
+          <span class="tag blue">JUnit</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-label">Languages</p>
+        <div class="tags">
+          <span class="tag">TypeScript</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Java</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-label">CI/CD & DevOps</p>
+        <div class="tags">
+          <span class="tag green">GitHub Actions</span>
+          <span class="tag green">Azure DevOps</span>
+          <span class="tag green">Jenkins</span>
+          <span class="tag green">Docker</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-label">Methodologies & Tools</p>
+        <div class="tags">
+          <span class="tag">BDD / Cucumber</span>
+          <span class="tag">Agile / Scrum</span>
+          <span class="tag">API Testing</span>
+          <span class="tag">Performance Testing</span>
+          <span class="tag">Postman</span>
+          <span class="tag">JIRA</span>
+          <span class="tag">Git</span>
+          <span class="tag">Page Object Model</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-label">AI & Emerging</p>
+        <div class="tags">
+          <span class="tag purple">OpenAI / LLM Integration</span>
+          <span class="tag purple">AI Test Generation</span>
+          <span class="tag purple">Static Code Analysis</span>
+          <span class="tag purple">AST Parsing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Open Source ─────────────────────────────────────────── -->
+<section id="oss">
+  <div class="container">
+    <p class="section-label">Open Source</p>
+    <h2 class="section-title">Real bugs. Real codebases. Real impact.</h2>
+    <p class="section-sub">I find and fix real bugs in production OSS projects used by millions of developers — not toy repos.</p>
+
+    <div class="oss-summary">
+      <div class="oss-stat-card">
+        <div class="num green">4</div>
+        <div class="lbl">PRs Merged</div>
+      </div>
+      <div class="oss-stat-card">
+        <div class="num">2+</div>
+        <div class="lbl">PRs Open / Under Review</div>
+      </div>
+      <div class="oss-stat-card">
+        <div class="num">50K+</div>
+        <div class="lbl">GitHub Stars in Contributed Repos</div>
+      </div>
+      <div class="oss-stat-card">
+        <div class="num">6+</div>
+        <div class="lbl">Repos Analyzed</div>
+      </div>
+    </div>
+
+    <div class="oss-grid">
+
+      <!-- CodeceptJS -->
+      <div class="oss-card">
+        <div class="oss-card-header">
+          <div class="oss-repo">codeceptjs/CodeceptJS</div>
+          <span class="badge merged">Merged</span>
+        </div>
+        <div class="oss-title">Fixed --shuffle flag silently breaking test order</div>
+        <div class="oss-desc">
+          Discovered that PR #5438 introduced a regression where the <code style="font-family:monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">--shuffle</code> flag was silently ignored. Tests ran in a fixed order despite shuffle being enabled, masking order-dependent failures. Reported the issue and the fix was merged by the maintainer (<em>DavertMik: "Thank you for catching it!"</em>).
+        </div>
+        <div class="oss-meta">
+          <span class="oss-stars"><span>★</span> 14K+</span>
+          <span class="oss-lang-tag">JavaScript</span>
+          <a class="oss-link" href="https://github.com/codeceptjs/CodeceptJS/pull/5639" target="_blank">PR #5639 ↗</a>
+        </div>
+      </div>
+
+      <!-- MoneyPrinterTurbo #994 -->
+      <div class="oss-card">
+        <div class="oss-card-header">
+          <div class="oss-repo">harry0703/MoneyPrinterTurbo</div>
+          <span class="badge merged">Merged</span>
+        </div>
+        <div class="oss-title">Fixed silent failure on empty AI model response</div>
+        <div class="oss-desc">
+          Found that empty <code style="font-family:monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">choices[]</code> responses from Qwen/OpenAI-compatible LLMs caused a confusing crash instead of a clear diagnostic error. The fix adds explicit detection and a user-readable error message. Maintainer acknowledged the diagnostics gap and merged.
+        </div>
+        <div class="oss-meta">
+          <span class="oss-stars"><span>★</span> 20K+</span>
+          <span class="oss-lang-tag">Python</span>
+          <a class="oss-link" href="https://github.com/harry0703/MoneyPrinterTurbo/pull/994" target="_blank">PR #994 ↗</a>
+        </div>
+      </div>
+
+      <!-- MoneyPrinterTurbo #1014 -->
+      <div class="oss-card">
+        <div class="oss-card-header">
+          <div class="oss-repo">harry0703/MoneyPrinterTurbo</div>
+          <span class="badge merged">Merged</span>
+        </div>
+        <div class="oss-title">Fixed missing Groq model name on list-fetch failure</div>
+        <div class="oss-desc">
+          When the Groq model list API failed, the app silently fell back to an empty model name, causing cryptic errors downstream. Added validation to surface the failure early with a clear message. Maintainer requested and merged the fix.
+        </div>
+        <div class="oss-meta">
+          <span class="oss-stars"><span>★</span> 20K+</span>
+          <span class="oss-lang-tag">Python</span>
+          <a class="oss-link" href="https://github.com/harry0703/MoneyPrinterTurbo/pull/1014" target="_blank">PR #1014 ↗</a>
+        </div>
+      </div>
+
+      <!-- MoneyPrinterTurbo #1033 -->
+      <div class="oss-card">
+        <div class="oss-card-header">
+          <div class="oss-repo">harry0703/MoneyPrinterTurbo</div>
+          <span class="badge merged">Merged</span>
+        </div>
+        <div class="oss-title">Fixed CLI local source validation gaps</div>
+        <div class="oss-desc">
+          CLI mode accepted invalid local video paths and URLs without validation, leading to confusing runtime failures. Added upfront validation with clear error messages. Maintainer verified with 3 test cases and merged (<em>"Thanks for the contribution"</em>).
+        </div>
+        <div class="oss-meta">
+          <span class="oss-stars"><span>★</span> 20K+</span>
+          <span class="oss-lang-tag">Python</span>
+          <a class="oss-link" href="https://github.com/harry0703/MoneyPrinterTurbo/pull/1033" target="_blank">PR #1033 ↗</a>
+        </div>
+      </div>
+
+      <!-- Magento2 -->
+      <div class="oss-card">
+        <div class="oss-card-header">
+          <div class="oss-repo">magento/magento2</div>
+          <span class="badge open">Under Review</span>
+        </div>
+        <div class="oss-title">Fixed bulk base-prices batch silently skipping bundle products</div>
+        <div class="oss-desc">
+          Identified that <code style="font-family:monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">InvalidSkuProcessor</code> threw an unhandled <code style="font-family:monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">NoSuchEntityException</code> for bundle products during async bulk price updates, causing the entire batch to fail silently. Fix adds proper exception handling to process valid SKUs without crashing.
+        </div>
+        <div class="oss-meta">
+          <span class="oss-stars"><span>★</span> 14K+</span>
+          <span class="oss-lang-tag">PHP</span>
+          <a class="oss-link" href="https://github.com/magento/magento2/pull/40883" target="_blank">PR #40883 ↗</a>
+        </div>
+      </div>
+
+      <!-- midjourney-api -->
+      <div class="oss-card">
+        <div class="oss-card-header">
+          <div class="oss-repo">erictik/midjourney-api</div>
+          <span class="badge open">Under Review</span>
+        </div>
+        <div class="oss-title">Fixed ChannelId used as ServerId in guild API calls</div>
+        <div class="oss-desc">
+          Found that the library was passing <code style="font-family:monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">ChannelId</code> where the Discord guild API expected <code style="font-family:monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">ServerId</code>, causing silent failures for users with server-specific Midjourney setups.
+        </div>
+        <div class="oss-meta">
+          <span class="oss-stars"><span>★</span> 2K+</span>
+          <span class="oss-lang-tag">TypeScript</span>
+          <a class="oss-link" href="https://github.com/erictik/midjourney-api/pull/296" target="_blank">PR #296 ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Projects ─────────────────────────────────────────────── -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">What I've built</h2>
+    <p class="section-sub">Personal tools and professional automation work.</p>
+
+    <div class="projects-grid">
+
+      <!-- VeriQA -->
+      <div class="proj-card featured">
+        <span class="featured-badge">⭐ Featured Project</span>
+        <div class="proj-header">
+          <div class="proj-title">VeriQA — AI-Powered QA Intelligence Tool</div>
+        </div>
+        <p class="proj-meta">Personal Project · Node.js · OpenAI · Static Analysis · Published on npm</p>
+        <p class="proj-desc">
+          Built an AI-powered CLI tool that analyzes git commits and automatically generates manual QA test scenarios.
+          VeriQA detects CallerImpact (which callers break when a function signature changes), EffectCancellation
+          (unconditional operations silently overriding conditional ones), undefended security patterns (XSS, path traversal,
+          SQL injection), and commit context (test-only commits, Schema.org structured data) — preventing false
+          positives that waste QA time.
+        </p>
+        <ul class="proj-bullets">
+          <li>Analyzes PR diffs and produces <strong>structured JSON test scenarios</strong> a manual QA tester can follow immediately</li>
+          <li><strong>DefenseChainAnalyzer</strong>: 3-layer defense check (same file → parent class → sibling traits) to prevent false positive security alerts</li>
+          <li><strong>CallerImpactAnalyzer</strong>: traces all callers of changed public functions across the codebase</li>
+          <li>Used on real OSS repos (Cal.com, PrestaShop, CodeceptJS) to find and report real bugs</li>
+          <li>AI prompt pipeline: AIContextCompressor → AIPromptBuilder → OpenAI GPT-4o</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">OpenAI GPT-4o</span>
+          <span class="tech-tag">AST Parsing</span>
+          <span class="tech-tag">Static Analysis</span>
+          <span class="tech-tag">CLI</span>
+          <span class="tech-tag">npm</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/kapil971390" target="_blank">View on GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- B2B eCommerce -->
+      <div class="proj-card">
+        <div class="proj-header">
+          <div class="proj-title">Enterprise B2B e-Commerce Automation Suite</div>
+        </div>
+        <p class="proj-meta">QA Lead · Team of 5 · Playwright + TypeScript · GitHub Actions</p>
+        <p class="proj-desc">
+          Built a full end-to-end Playwright automation suite from scratch for a large B2B e-commerce platform
+          covering product catalog, cart, checkout, and order management flows.
+        </p>
+        <ul class="proj-bullets">
+          <li><strong>Reduced regression cycle from 3 days to 4 hours</strong> — enabling daily release cadence</li>
+          <li>Achieved <strong>85%+ automated test coverage</strong> across critical user journeys</li>
+          <li>Led and mentored a team of 5 QA engineers — sprint planning, code reviews, test closure reports</li>
+          <li>Integrated nightly regression runs with <strong>GitHub Actions + Slack failure alerts</strong></li>
+          <li>Prevented <strong>30+ critical production bugs</strong> through structured regression and exploratory cycles</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="tech-tag">Playwright</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">GitHub Actions</span>
+          <span class="tech-tag">Page Object Model</span>
+          <span class="tech-tag">Slack API</span>
+        </div>
+      </div>
+
+      <!-- REST API + Mobile -->
+      <div class="proj-card">
+        <div class="proj-header">
+          <div class="proj-title">Data Management App — API & Mobile Automation</div>
+        </div>
+        <p class="proj-meta">RestAssured + Appium · Android · 15 Sprints</p>
+        <p class="proj-desc">
+          Automated backend REST API testing and mobile UI testing for a data management mobile application,
+          maintaining 90%+ suite stability over 15 consecutive sprints.
+        </p>
+        <ul class="proj-bullets">
+          <li>Automated <strong>200+ REST API test cases</strong> — CRUD, auth flows, data validation, edge cases</li>
+          <li>Performed mobile UI testing with Appium across Android devices for core workflows</li>
+          <li>Cut <strong>API validation time by 60%</strong> through automated regression</li>
+          <li>Maintained <strong>90%+ pass rate</strong> across 15 sprints with zero test debt accumulation</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="tech-tag">RestAssured</span>
+          <span class="tech-tag">Appium</span>
+          <span class="tech-tag">Java</span>
+          <span class="tech-tag">TestNG</span>
+          <span class="tech-tag">Android</span>
+        </div>
+      </div>
+
+      <!-- Air Quality -->
+      <div class="proj-card">
+        <div class="proj-header">
+          <div class="proj-title">Real-time Air Quality Monitoring System QA</div>
+        </div>
+        <p class="proj-meta">Selenium + API Testing · European Regulatory Compliance · Agile + Waterfall</p>
+        <p class="proj-desc">
+          Built and maintained a test suite for a real-time IoT air quality monitoring platform used by
+          European clients for regulatory compliance — validating sensor data pipelines, dashboards,
+          and API accuracy.
+        </p>
+        <ul class="proj-bullets">
+          <li>Validated <strong>real-time sensor data ingestion pipelines</strong> and dashboard visualizations for accuracy</li>
+          <li>Ensured <strong>cross-browser compatibility</strong> for monitoring dashboard across EU-regulated environments</li>
+          <li>Integrated <strong>daily automated job runs</strong> enabling same-day defect visibility</li>
+          <li>Coordinated testing across Agile and Waterfall phases for phased product rollout</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="tech-tag">Selenium</span>
+          <span class="tech-tag">Java</span>
+          <span class="tech-tag">API Testing</span>
+          <span class="tech-tag">Cross-browser</span>
+          <span class="tech-tag">Azure DevOps</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ─────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-card">
+      <p class="section-label" style="text-align:center">Let's Work Together</p>
+      <h2 class="contact-title">Ready to ship quality?</h2>
+      <p class="contact-sub">
+        Available for freelance QA automation projects. Let's talk about what you're building.
+      </p>
+      <div class="contact-links">
+        <a class="contact-link-card" href="https://www.upwork.com" target="_blank">
+          <span class="contact-link-icon">💼</span>
+          <div class="contact-link-info">
+            <div class="contact-link-name">Hire on Upwork</div>
+            <div class="contact-link-val">Available for contracts · Sr. QA Automation</div>
+          </div>
+          <span style="margin-left:auto;color:var(--muted);font-size:12px">↗</span>
+        </a>
+        <a class="contact-link-card" href="https://github.com/kapil971390" target="_blank">
+          <span class="contact-link-icon">🐙</span>
+          <div class="contact-link-info">
+            <div class="contact-link-name">GitHub</div>
+            <div class="contact-link-val">github.com/kapil971390</div>
+          </div>
+          <span style="margin-left:auto;color:var(--muted);font-size:12px">↗</span>
+        </a>
+        <a class="contact-link-card" href="mailto:kapil97139@gmail.com">
+          <span class="contact-link-icon">✉️</span>
+          <div class="contact-link-info">
+            <div class="contact-link-name">Email</div>
+            <div class="contact-link-val">kapil97139@gmail.com</div>
+          </div>
+          <span style="margin-left:auto;color:var(--muted);font-size:12px">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────── -->
+<footer>
+  <p>Built by Kapil Rathore · Open Source Contributor · QA Automation Engineer</p>
+</footer>
+
+<script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.style.color = a.getAttribute('href') === '#' + entry.target.id ? 'var(--text)' : '';
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.oss-card, .proj-card, .highlight-card, .oss-stat-card');
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity .4s ease, transform .4s ease';
+    fadeObs.observe(el);
+  });
+</script>
+
+</body>
+</html>
