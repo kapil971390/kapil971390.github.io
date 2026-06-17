@@ -180,8 +180,10 @@
     }
     .badge.merged { background: var(--green-dim); color: var(--green); border: 1px solid rgba(34,197,94,.25); }
     .badge.open { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(245,158,11,.25); }
+    .badge.security { background: rgba(239,68,68,.12); color: #f87171; border: 1px solid rgba(239,68,68,.25); }
     .badge.merged::before { content: '✓ '; }
     .badge.open::before { content: '⏳ '; }
+    .badge.security::before { content: '🔒 '; }
     .oss-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
     .oss-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
     .oss-meta { display: flex; align-items: center; gap: 16px; }
@@ -497,11 +499,15 @@
         <div class="lbl">PRs Open / Under Review</div>
       </div>
       <div class="oss-stat-card">
+        <div class="num">1</div>
+        <div class="lbl">Security Vulnerabilities Reported</div>
+      </div>
+      <div class="oss-stat-card">
         <div class="num">50K+</div>
         <div class="lbl">GitHub Stars in Contributed Repos</div>
       </div>
       <div class="oss-stat-card">
-        <div class="num">6+</div>
+        <div class="num">7+</div>
         <div class="lbl">Repos Analyzed</div>
       </div>
     </div>
@@ -573,6 +579,23 @@
           <span class="oss-stars"><span>★</span> 20K+</span>
           <span class="oss-lang-tag">Python</span>
           <a class="oss-link" href="https://github.com/harry0703/MoneyPrinterTurbo/pull/1033" target="_blank">PR #1033 ↗</a>
+        </div>
+      </div>
+
+      <!-- MoneyPrinterTurbo security #1049 -->
+      <div class="oss-card">
+        <div class="oss-card-header">
+          <div class="oss-repo">harry0703/MoneyPrinterTurbo</div>
+          <span class="badge security">Security · Validated</span>
+        </div>
+        <div class="oss-title">Reported credential leak in LLM error path</div>
+        <div class="oss-desc">
+          Identified that custom <code style="font-family:monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">*_base_url</code> credentials (e.g. <code style="font-family:monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">https://user:pass@host</code>) were being leaked into API responses via the bare <code style="font-family:monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">except Exception as e: return f"Error: {str(e)}"</code> pattern. Reported in issue #1049. Maintainer confirmed the finding, shipped the fix independently, and noted <em>"the report helped confirm the right fix path."</em>
+        </div>
+        <div class="oss-meta">
+          <span class="oss-stars"><span>★</span> 20K+</span>
+          <span class="oss-lang-tag">Python</span>
+          <a class="oss-link" href="https://github.com/harry0703/MoneyPrinterTurbo/issues/1049" target="_blank">Issue #1049 ↗</a>
         </div>
       </div>
 
